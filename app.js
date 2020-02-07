@@ -3,10 +3,13 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Campground = require("./models/campground")
+const Commets = require("./models/comment")
+var seedDB = require("./seed")
+
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {
   useNewUrlParser: true
 });
-
+seedDB()
 // Campground.create(
 //   {
 //     name: "Taifa",
@@ -86,10 +89,11 @@ app.get("/campgrounds/new", function (req, res) {
 });
 
 app.get("/campgrounds/:id", function (req, res) {
-  Campground.findById(req.params.id, function (err, foundCampground) {
+  Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
     if (err) {
       console.log(err);
     } else {
+      console.log(foundCampground)
       res.render("show", {
         campground: foundCampground
       });
