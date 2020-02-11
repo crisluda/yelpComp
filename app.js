@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var Campground = require("./models/campground")
 const Comment = require("./models/comment")
 var seedDB = require("./seed")
+app.use(express.static(__dirname + "/public"))
 
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {
   useNewUrlParser: true
