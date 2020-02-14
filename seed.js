@@ -39,7 +39,7 @@ function seedDB() {
                         function (err, comment) {
                             data.comments.push(comment)
                             data.save()
-                            console.log(comment)
+                            // console.log(comment)
 
                         })
                 }
