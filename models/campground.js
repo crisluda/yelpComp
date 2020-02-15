@@ -4,6 +4,13 @@ var Campground = mongoose.model("Campground", {
     name: String,
     image: String,
     description: String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            username: "User"
+        },
+        username: String
+    },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "comment"
